@@ -1,54 +1,60 @@
-﻿
-using LearningCSharp.RSC.Infrastructure;
+﻿using LearningCSharp.RSC.Infrastructure;
 using Microsoft.EntityFrameworkCore;
+using Shared.Commons;
 
 namespace LearningCSharp.RSC.Repositories;
 
 public class GenericRepository<T>(ApplicationDbContext _context) : IRepository<T> where T : class
 {
-    public async Task<IResult> CreateAsync(T obj)
+    public async Task<Result<T>> CreateAsync(T obj)
     {
         if (obj == null)
-            return Results.BadRequest();
+            return Result<T>.Failure(Errors.NullArgument);
 
         _context.Set<T>().Add(obj);
-        await _context.SaveChangesAsync();
+        var result = await _context.SaveChangesAsync();
 
-        return Results.Created();
+        return result > 0 ? Result<T>.Created() : Result<T>.Failure(Errors.BadRequest);
     }
 
-    public async Task<IResult> DeleteAsync(Guid id)
+    public async Task<Result<T>> DeleteAsync(Guid id)
     {
         var item = await _context.Set<T>().FindAsync(id);
 
         if (item == null)
-            return Results.NotFound();
+            return Result<T>.Failure(Errors.BadRequest);
 
         _context.Set<T>().Remove(item);
-        await _context.SaveChangesAsync();
+        var result = await _context.SaveChangesAsync();
 
-        return Results.Ok();
+        return result > 0 ? Result<T>.Success() : Result<T>.Failure(Errors.ServiceUnavailable);
     }
 
-    public async Task<IEnumerable<T>> GetAllAsync()
+    public async Task<Result<List<T>>> GetAllAsync()
     {
-        return await _context.Set<T>().ToListAsync();
+        var result = await _context.Set<T>().ToListAsync();
+
+        return Result<List<T>>.FromResult(result);
     }
 
-    public async Task<IResult> GetByIdAsync(Guid id)
+    public async Task<Result<T>> GetByIdAsync(Guid id)
+    {
+        var result = await _context.Set<T>().FindAsync(id);
+        return result == null ? Result<T>.Failure(Errors.NotFound(id)) : Result<T>.FromResult(result);
+    }
+
+    public async Task<Result<T>> UpdateAsync(Guid id, T obj)
     {
         var item = await _context.Set<T>().FindAsync(id);
-        return item != null ? Results.Ok(item) : Results.NotFound();
-    }
+        if (item == null)
+            return Result<T>.Failure(Errors.NotFound(id));
 
-    public async Task<IResult> UpdateAsync(T obj)
-    {
-        if (obj == null)
-            Results.NotFound();
+        var res = _context.Set<T>().Update(obj);
+        if (res == null)
+            return Result<T>.Failure(Errors.BadRequest);
 
-        _context.Set<T>().Update(obj);
-        await _context.SaveChangesAsync();
+        var result = await _context.SaveChangesAsync();
 
-        return Results.Ok();
+        return result > 0 ? Result<T>.Success() : Result<T>.Failure(Errors.BadRequest);
     }
 }
