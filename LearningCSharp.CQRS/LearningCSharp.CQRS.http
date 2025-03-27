@@ -1,0 +1,6 @@
+@LearningCSharp.CQRS_HostAddress = http://localhost:5031
+
+GET {{LearningCSharp.CQRS_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
