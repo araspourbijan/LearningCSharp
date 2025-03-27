@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35913.81 d17.13
+VisualStudioVersion = 17.13.35913.81
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearningCSharp.RSC", "LearningC#.RSC\LearningCSharp.RSC.csproj", "{56C96781-0643-407B-9753-0A25860695D8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{78F5AFE8-DF3C-4E73-A91F-6869B013EE0C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearningCSharp.RSCv2", "LearningCSharp.RSCv2\LearningCSharp.RSCv2.csproj", "{5793615C-247F-487E-BE95-9E879F14A053}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{78F5AFE8-DF3C-4E73-A91F-6869B013EE0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{78F5AFE8-DF3C-4E73-A91F-6869B013EE0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{78F5AFE8-DF3C-4E73-A91F-6869B013EE0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5793615C-247F-487E-BE95-9E879F14A053}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5793615C-247F-487E-BE95-9E879F14A053}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5793615C-247F-487E-BE95-9E879F14A053}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5793615C-247F-487E-BE95-9E879F14A053}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

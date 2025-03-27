@@ -1,6 +1,6 @@
 ﻿using Shared.Commons;
 
-namespace LearningCSharp.RSC.Exceptions;
+namespace LearningCSharp.RSCv2.Exceptions;
 
 public class NullException : Exception
 {
