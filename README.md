@@ -17,4 +17,3 @@ LearningCSharp.CQRS:
 - Command Query Responsibility Segregation
 - MediatR
 - FluentValidation
-- AutoMapper

@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using LearningCSharp.RSCv2.Exceptions;
 using LearningCSharp.RSCv2.Repositories;
 using Shared.Dtos;
+using Shared.Exceptions;
 using Shared.Models;
 
 namespace LearningCSharp.RSCv2.Services;

@@ -1,6 +1,6 @@
-﻿using LearningCSharp.RSCv2.Exceptions;
-using LearningCSharp.RSCv2.Infrastructure;
+﻿using LearningCSharp.RSCv2.Infrastructure;
 using Microsoft.EntityFrameworkCore;
+using Shared.Exceptions;
 
 namespace LearningCSharp.RSCv2.Repositories;
 

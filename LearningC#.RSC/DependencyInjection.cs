@@ -14,11 +14,8 @@ public static class DependencyInjection
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
 
-        services.AddDbContext<ApplicationDbContext>(options =>
-            options
-            .UseSqlServer(configuration.GetConnectionString("DefaultConnection"))
-            //.UseInMemoryDatabase("InMemoryDb")
-            );
+        services.AddDbContext<ApplicationDbContext>(options =>options
+            .UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
         services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
         services.AddScoped(typeof(BookService));

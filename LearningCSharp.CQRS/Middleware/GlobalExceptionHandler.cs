@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Shared.Exceptions;
 using System.Net;
 
-namespace LearningCSharp.RSCv2.Middleware;
+namespace LearningCSharp.CQRS.Middleware;
 
 public class GlobalExceptionHandler(ILogger<GlobalExceptionHandler> logger) : IExceptionHandler
 {
@@ -12,7 +12,14 @@ public class GlobalExceptionHandler(ILogger<GlobalExceptionHandler> logger) : IE
       Exception exception,
       CancellationToken cancellationToken)
     {
+
         logger.LogError(exception, "An unhandled exception occurred.");
+
+        //if (exception is ValidationException)
+        //{
+        //    return false;
+        //}
+
 
         var statusCode = exception switch
         {
