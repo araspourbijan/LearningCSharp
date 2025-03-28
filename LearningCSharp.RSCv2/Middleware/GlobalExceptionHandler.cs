@@ -19,7 +19,7 @@ public class GlobalExceptionHandler(ILogger<GlobalExceptionHandler> logger) : IE
             BadRequestException => (int)HttpStatusCode.BadRequest,
             NullException => (int)HttpStatusCode.BadRequest,
             NotFoundException => (int)HttpStatusCode.NotFound,
-            _ => (int)HttpStatusCode.InternalServerError // Default to 500
+            _ => (int)HttpStatusCode.InternalServerError 
         };
 
         var problemDetails = new ProblemDetails

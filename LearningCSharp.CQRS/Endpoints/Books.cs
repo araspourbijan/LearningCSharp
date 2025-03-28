@@ -9,6 +9,7 @@ namespace LearningCSharp.CQRS.Endpoints;
 
 public class Books : EndpointGroupBase
 {
+    public override string Endpoint { get; } = "book";
     public override void Map(WebApplication app)
     {
         app.MapGroup(this).MapPost("/", AddBook);
@@ -22,7 +23,6 @@ public class Books : EndpointGroupBase
     {
         await sender.Send(command);
     }
-
     public async Task<List<BookDto>> GetBooks(ISender sender)
     {
         return await sender.Send(new GetBooksQuery());
@@ -34,7 +34,6 @@ public class Books : EndpointGroupBase
 
     public async Task UpdateBook(ISender sender, [FromRoute] Guid id, [FromBody] UpdateBookCommand command)
     {
-
         command = command with { Id = id };
         await sender.Send(command);
     }

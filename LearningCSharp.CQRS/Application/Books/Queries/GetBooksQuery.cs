@@ -1,4 +1,5 @@
-﻿using LearningCSharp.CQRS.Application.Interfaces;
+﻿using BenchmarkDotNet.Attributes;
+using LearningCSharp.CQRS.Application.Interfaces;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Shared.Dtos;
