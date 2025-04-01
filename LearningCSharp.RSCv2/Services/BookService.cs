@@ -14,6 +14,9 @@ public class BookService(IRepository<Book> _repository, IMapper _mapper)
         if (title.Length > 100)
             throw new BadRequestException("Title is too long");
 
+        if (stock < 5)
+            throw new ArgumentException("Stock must be more than 5", nameof(stock));
+
         Book newBook = new() { Author = author, Title = title, Price = price, Stock = stock };
 
         await _repository.CreateAsync(newBook);

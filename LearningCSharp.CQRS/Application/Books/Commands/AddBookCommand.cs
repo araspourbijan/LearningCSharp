@@ -2,7 +2,6 @@
 using LearningCSharp.CQRS.Application.Interfaces;
 using MediatR;
 using Shared.Models;
-
 namespace LearningCSharp.CQRS.Application.Books.Commands;
 
 public record AddBookCommand(string Title, string Author, double Price, int Stock) : IRequest;
