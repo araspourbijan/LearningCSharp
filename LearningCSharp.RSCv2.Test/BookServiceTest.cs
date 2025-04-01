@@ -20,6 +20,8 @@ public class BookServiceTest
         _BookService = new BookService(_mockRepository.Object, _mapper.Object);
     }
 
+    #region CreateAsync
+
     [Theory]
     [InlineData("This is a very long title that is more than 100 characters long lorem ipsum param param param *************************")]
     [InlineData("lorem ipsum, lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum param *************** ")]
@@ -58,6 +60,9 @@ public class BookServiceTest
 
         _mockRepository.Verify(x => x.CreateAsync(It.IsAny<Book>()), Times.Once);
     }
+    #endregion
+
+    #region GetAllAsync
 
     [Fact]
     public async Task GetAllAsync_Return_ListOfBooksDto()
@@ -66,4 +71,6 @@ public class BookServiceTest
         Assert.NotNull(result);
         Assert.IsType<List<BookDto>>(result);
     }
+    #endregion
+
 }
