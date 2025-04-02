@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearningCSharp.CQRS", "Lear
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearningCSharp.RSCv2.Test", "LearningCSharp.RSCv2.Test\LearningCSharp.RSCv2.Test.csproj", "{70A6D24D-A045-4EA8-A043-10277E934251}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aras.StringTools", "Aras.StringTools\Aras.StringTools.csproj", "{89A35005-D96C-55B4-230F-98EEC494E0C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aras.StringTools.Test", "Aras.StringTools.Test\Aras.StringTools.Test.csproj", "{C48AF653-7FE9-16CA-11E1-2B1DE00C1563}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +39,14 @@ Global
 		{70A6D24D-A045-4EA8-A043-10277E934251}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{70A6D24D-A045-4EA8-A043-10277E934251}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{70A6D24D-A045-4EA8-A043-10277E934251}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89A35005-D96C-55B4-230F-98EEC494E0C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89A35005-D96C-55B4-230F-98EEC494E0C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89A35005-D96C-55B4-230F-98EEC494E0C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89A35005-D96C-55B4-230F-98EEC494E0C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C48AF653-7FE9-16CA-11E1-2B1DE00C1563}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C48AF653-7FE9-16CA-11E1-2B1DE00C1563}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C48AF653-7FE9-16CA-11E1-2B1DE00C1563}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C48AF653-7FE9-16CA-11E1-2B1DE00C1563}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

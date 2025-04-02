@@ -11,6 +11,11 @@ LearningCSharp.RSCv2:
 - Repository, Service, Controller
 - Global exception handling
 - AutoMapper
+- FluentValidation
+- Delegates
+- Events
+- Interfaces
+- Dependency Injection
 
 LearningCSharp.CQRS:
 

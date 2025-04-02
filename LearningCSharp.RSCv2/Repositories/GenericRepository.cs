@@ -44,9 +44,9 @@ public class GenericRepository<T>(ApplicationDbV2Context _context) : IRepository
 
     public async Task UpdateAsync(Guid id, T obj) // poteva essere meglio?
     {
-        var item = await _context.Set<T>().FindAsync(id);
+        _ = await _context.Set<T>().FindAsync(id) ?? throw new BadRequestException();
 
-        var res = _context.Set<T>().Update(obj) ?? throw new BadRequestException();
+        _context.Set<T>().Update(obj);
 
         var result = await _context.SaveChangesAsync();
 

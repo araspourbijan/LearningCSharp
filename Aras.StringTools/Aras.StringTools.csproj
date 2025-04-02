@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<PackageId>StringToolsAras</PackageId>
+		<Title>String tools</Title>
+		<PackageIcon>Logo.png</PackageIcon>
+		<Description>A sample package, just for training</Description>
+		<PackageProjectUrl>https://github.com/araspourbijan</PackageProjectUrl>
+		<AssemblyName>Aras.StringTools</AssemblyName>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <None Update="Logo.png">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	</ItemGroup>
+
+</Project>

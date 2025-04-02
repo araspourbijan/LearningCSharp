@@ -2,6 +2,7 @@
 using LearningCSharp.RSCv2.Middleware;
 using LearningCSharp.RSCv2.Repositories;
 using LearningCSharp.RSCv2.Services;
+using LearningCSharp.RSCv2.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
@@ -23,6 +24,8 @@ public static class DependencyInjection
 
         services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
         services.AddScoped(typeof(BookService));
+        services.AddScoped<INotificationService, NotificationService>();
+        services.AddScoped<IDeliveryService, DeliveryService>();
 
         services.AddAutoMapper(Assembly.GetExecutingAssembly());
 

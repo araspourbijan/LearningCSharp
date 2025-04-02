@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Shared.Exceptions;
-using System.ComponentModel.DataAnnotations;
 using System.Net;
 
 namespace LearningCSharp.CQRS.Middleware;
@@ -15,11 +14,6 @@ public class GlobalExceptionHandler(ILogger<GlobalExceptionHandler> logger) : IE
     {
 
         logger.LogError(exception, "An unhandled exception occurred.");
-
-        if (exception is ValidationException)
-        {
-            return false;
-        }
 
         var statusCode = exception switch
         {
@@ -35,8 +29,18 @@ public class GlobalExceptionHandler(ILogger<GlobalExceptionHandler> logger) : IE
             Status = statusCode,
             Detail = exception.Message,
             Instance = $"{httpContext.Request.Method}: {httpContext.Request.Path}",
-            Type = "https://httpstatuses.com/" + statusCode
+            Type = "https://httpstatuses.com/" + statusCode,
+            Extensions = new Dictionary<string, object>()
         };
+
+        if (exception is FluentValidation.ValidationException)
+        {
+            //cast validation exception
+            var validationException = (FluentValidation.ValidationException)exception;
+            problemDetails.Detail = "Validation error happend";
+            problemDetails.Extensions["Errors"] = validationException.Errors.Select(e => new { Name = e.PropertyName, Message = e.ErrorMessage, Code = e.ErrorCode })
+            ;
+        }
 
         httpContext.Response.StatusCode = problemDetails.Status.Value;
 
