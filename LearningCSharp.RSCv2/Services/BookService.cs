@@ -8,7 +8,7 @@ using Shared.Models;
 
 namespace LearningCSharp.RSCv2.Services;
 
-public class BookService : IBookService
+public partial class BookService : IBookService
 {
     private readonly IRepository<Book> repository;
     private readonly IMapper mapper;
@@ -17,36 +17,10 @@ public class BookService : IBookService
     {
         repository = _repository;
         mapper = _mapper;
-        BookCreated += _notificationService.OnObjectCreated; // ???
+        BookCreated += _notificationService.OnObjectCreated;
         BookCreatedDelivery += _deliveryService.OnObjectCreated;
         BookUpdated += _notificationService.OnObjectUpdated;
 
-    }
-
-    //public delegate void BookCreatedEventHandler(object source, EventArgs args);
-    public delegate void BookCreatedEventHandler(object source, EmailMessageArgs args);
-
-    public event BookCreatedEventHandler BookCreated; // first approach with EventArgs and delegate type
-    public event EventHandler<DeliveryMessageArgs> BookCreatedDelivery; // second approach with generic EventHandler
-    public event EventHandler<EmailMessageArgs> BookUpdated; // second approach with generic EventHandler
-    public event EventHandler BookDeleted; // third approach with normal EventHandler
-    protected virtual void OnBookCreated(EmailMessageArgs args)
-    {
-        BookCreated?.Invoke(this, args);
-    }
-    protected virtual void OnBookCreatedDelivery(DeliveryMessageArgs args)
-    {
-        BookCreatedDelivery?.Invoke(this, args);
-    }
-
-    protected virtual void OnBookUpdated(EmailMessageArgs args)
-    {
-        BookUpdated?.Invoke(this, args);
-    }
-
-    protected virtual void OnBookDeleted()
-    {
-        BookDeleted?.Invoke(this, EventArgs.Empty);
     }
 
     public async Task CreateAsync(string title, string author, double price, int stock)
@@ -62,14 +36,14 @@ public class BookService : IBookService
 
         await repository.CreateAsync(newBook);
 
-        EmailMessageArgs message = new()
+        EmailMessageArgs messageArgs = new()
         {
             Id = newBook.Id,
             Type = EmailTemplateEnum.BookCreated,
             Email = "email@example.it",
             Subject = "new book has been created",
         };
-        OnBookCreated(message);
+        OnBookCreated(messageArgs);
         OnBookCreatedDelivery(new() { Id = newBook.Id, Title = newBook.Title, Type = newBook.Title, Stock = newBook.Stock });
     }
 

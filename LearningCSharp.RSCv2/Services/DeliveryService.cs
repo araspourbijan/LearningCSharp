@@ -16,4 +16,10 @@ public class DeliveryService(ILogger<DeliveryService> _logger) : IDeliveryServic
     {
         _logger.LogInformation($"Object Ordered: {obj.Title} with id {obj.Id}\n{obj.Stock} items are waiting to delivered to library");
     }
+
+    public void OnObjectDeleted(object source)
+    {
+        _logger.LogInformation($"Object Deleted: Item has been deleted");
+    }
 }
+ 

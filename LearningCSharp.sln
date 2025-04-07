@@ -11,15 +11,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearningCSharp.RSCv2", "Lea
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearningCSharp.CQRS", "LearningCSharp.CQRS\LearningCSharp.CQRS.csproj", "{1078DC0B-F184-4EC6-B984-286D2E19A86D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearningCSharp.RSCv2.Test", "LearningCSharp.RSCv2.Test\LearningCSharp.RSCv2.Test.csproj", "{70A6D24D-A045-4EA8-A043-10277E934251}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aras.StringTools", "Aras.StringTools\Aras.StringTools.csproj", "{89A35005-D96C-55B4-230F-98EEC494E0C6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aras.StringTools.Tests", "Aras.StringTools.Test\Aras.StringTools.Tests.csproj", "{C48AF653-7FE9-16CA-11E1-2B1DE00C1563}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearningCSharp.RSCv2.Tests", "LearningCSharp.RSCv2.Tests\LearningCSharp.RSCv2.Tests.csproj", "{18DEEB27-3A63-420A-B2DE-E74C24FA3DA5}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearningCSharp.RSCv2Moq", "LearningCSharp.RSCv2Moq\LearningCSharp.RSCv2Moq.csproj", "{DFDD4854-F2F7-4B8F-A0E1-7C85CA67EE7E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearningCSharp.RSCv2.Tests", "LearningCSharp.RSCv2Moq\LearningCSharp.RSCv2.Tests.csproj", "{DFDD4854-F2F7-4B8F-A0E1-7C85CA67EE7E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,10 +35,6 @@ Global
 		{1078DC0B-F184-4EC6-B984-286D2E19A86D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1078DC0B-F184-4EC6-B984-286D2E19A86D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1078DC0B-F184-4EC6-B984-286D2E19A86D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{70A6D24D-A045-4EA8-A043-10277E934251}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{70A6D24D-A045-4EA8-A043-10277E934251}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{70A6D24D-A045-4EA8-A043-10277E934251}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{70A6D24D-A045-4EA8-A043-10277E934251}.Release|Any CPU.Build.0 = Release|Any CPU
 		{89A35005-D96C-55B4-230F-98EEC494E0C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{89A35005-D96C-55B4-230F-98EEC494E0C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{89A35005-D96C-55B4-230F-98EEC494E0C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -51,10 +43,6 @@ Global
 		{C48AF653-7FE9-16CA-11E1-2B1DE00C1563}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C48AF653-7FE9-16CA-11E1-2B1DE00C1563}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C48AF653-7FE9-16CA-11E1-2B1DE00C1563}.Release|Any CPU.Build.0 = Release|Any CPU
-		{18DEEB27-3A63-420A-B2DE-E74C24FA3DA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{18DEEB27-3A63-420A-B2DE-E74C24FA3DA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{18DEEB27-3A63-420A-B2DE-E74C24FA3DA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{18DEEB27-3A63-420A-B2DE-E74C24FA3DA5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DFDD4854-F2F7-4B8F-A0E1-7C85CA67EE7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DFDD4854-F2F7-4B8F-A0E1-7C85CA67EE7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DFDD4854-F2F7-4B8F-A0E1-7C85CA67EE7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
