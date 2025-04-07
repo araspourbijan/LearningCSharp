@@ -20,6 +20,7 @@ public partial class BookService : IBookService
         BookCreated += _notificationService.OnObjectCreated;
         BookCreatedDelivery += _deliveryService.OnObjectCreated;
         BookUpdated += _notificationService.OnObjectUpdated;
+        BookDeleted += _deliveryService.OnObjectDeleted;
 
     }
 
@@ -36,15 +37,9 @@ public partial class BookService : IBookService
 
         await repository.CreateAsync(newBook);
 
-        EmailMessageArgs messageArgs = new()
-        {
-            Id = newBook.Id,
-            Type = EmailTemplateEnum.BookCreated,
-            Email = "email@example.it",
-            Subject = "new book has been created",
-        };
-        OnBookCreated(messageArgs);
-        OnBookCreatedDelivery(new() { Id = newBook.Id, Title = newBook.Title, Type = newBook.Title, Stock = newBook.Stock });
+        OnBookCreated(new EmailMessageEventArgs(EmailTemplateEnum.BookCreated, "email@example.it", "new book has been created", newBook.Id));
+
+        OnBookCreatedDelivery(new DeliveryMessageEventArgs(newBook.Id, newBook.Title, newBook.Stock, newBook.Title));
     }
 
     public async Task<List<BookDto>> GetAllAsync()
@@ -64,13 +59,7 @@ public partial class BookService : IBookService
     public async Task UpdateAsync(Guid id, Book book)
     {
         await repository.UpdateAsync(id, book);
-        OnBookUpdated(new()
-        {
-            Id = id,
-            Type = EmailTemplateEnum.BookModified,
-            Email = "email@example.it",
-            Subject = "this book has been created",
-        });
+        OnBookUpdated(new(EmailTemplateEnum.BookModified, "email@example.it", "this book has been created", id));
     }
 
     public async Task DeleteAsync(Guid id)

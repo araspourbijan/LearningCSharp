@@ -2,6 +2,6 @@
 
 public interface INotificationService
 {
-    public void OnObjectCreated(object source, EmailMessageArgs obj);
-    public void OnObjectUpdated(object source, EmailMessageArgs obj);
+    public void OnObjectCreated(object source, EmailMessageEventArgs obj);
+    public void OnObjectUpdated(object source, EmailMessageEventArgs obj);
 }

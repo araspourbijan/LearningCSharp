@@ -2,6 +2,6 @@
 
 public interface IDeliveryService
 {
-    public void OnObjectCreated(object source, DeliveryMessageArgs obj);
-    public void OnObjectDeleted(object source);
+    public void OnObjectCreated(object source, DeliveryMessageEventArgs obj);
+    public void OnObjectDeleted(object source, EventArgs args);
 }
