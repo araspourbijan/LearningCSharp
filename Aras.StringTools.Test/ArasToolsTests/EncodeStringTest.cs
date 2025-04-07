@@ -1,4 +1,4 @@
- namespace Aras.StringTools.Test.ArasToolsTests;
+namespace Aras.StringTools.Tests.ArasToolsTests;
 using Aras.StringTools;
 using Xunit;
 

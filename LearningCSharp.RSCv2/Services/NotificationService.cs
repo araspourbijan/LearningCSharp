@@ -1,8 +1,15 @@
 ﻿using LearningCSharp.RSCv2.Services.Interfaces;
 
 namespace LearningCSharp.RSCv2.Services;
+using Shared.Enums;
 
-
+public class EmailMessageArgs : EventArgs
+{
+    public EmailTemplateEnum Type { get; set; }
+    public string Email { get; set; }
+    public string? Subject { get; set; }
+    public Guid? Id { get; set; }
+}
 
 public class NotificationService(ILogger<NotificationService> _logger) : INotificationService
 {
@@ -25,7 +32,7 @@ public class NotificationService(ILogger<NotificationService> _logger) : INotifi
     {
         ArgumentNullException.ThrowIfNull(model);
 
-        if (model.Type == "CREATED")
+        if (model.Type == EmailTemplateEnum.BookCreated)
             return GetCreateBookEmailTemplate(model);
 
         return "Object created";

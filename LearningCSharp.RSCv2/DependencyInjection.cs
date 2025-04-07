@@ -26,6 +26,7 @@ public static class DependencyInjection
         services.AddScoped(typeof(BookService));
         services.AddScoped<INotificationService, NotificationService>();
         services.AddScoped<IDeliveryService, DeliveryService>();
+        services.AddScoped<IBookService, BookService>();
 
         services.AddAutoMapper(Assembly.GetExecutingAssembly());
 

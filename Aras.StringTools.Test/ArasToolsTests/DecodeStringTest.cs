@@ -1,4 +1,4 @@
-﻿namespace Aras.StringTools.Test.ArasToolsTests;
+﻿namespace Aras.StringTools.Tests.ArasToolsTests;
 public class DecodeStringTest
 {
     [Theory]

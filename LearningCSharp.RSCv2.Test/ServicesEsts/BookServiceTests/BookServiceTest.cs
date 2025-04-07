@@ -1,23 +1,28 @@
 ﻿using AutoMapper;
 using LearningCSharp.RSCv2.Repositories;
 using LearningCSharp.RSCv2.Services;
+using LearningCSharp.RSCv2.Services.Interfaces;
 using Moq;
 using Shared.Dtos;
 using Shared.Exceptions;
 using Shared.Models;
 
-namespace LearningCSharp.RSCv2.Test;
+namespace LearningCSharp.RSCv2.Test.ServicesEsts.BookServiceTests;
 public class BookServiceTest
 {
     private readonly Mock<IRepository<Book>> _mockRepository;
     private readonly BookService _BookService;
     private readonly Mock<IMapper> _mapper;
+    private readonly Mock<INotificationService> _notificationService;
+    private readonly Mock<IDeliveryService> _deliveryService;
 
     public BookServiceTest()
     {
         _mockRepository = new Mock<IRepository<Book>>();
         _mapper = new Mock<IMapper>();
-        _BookService = new BookService(_mockRepository.Object, _mapper.Object);
+        _notificationService = new Mock<INotificationService>();
+        _deliveryService = new Mock<IDeliveryService>();
+        _BookService = new BookService(_mockRepository.Object, _mapper.Object, _notificationService.Object, _deliveryService.Object);
     }
 
     #region CreateAsync

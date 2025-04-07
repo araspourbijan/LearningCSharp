@@ -2,12 +2,13 @@
 using LearningCSharp.RSCv2.Repositories;
 using LearningCSharp.RSCv2.Services.Interfaces;
 using Shared.Dtos;
+using Shared.Enums;
 using Shared.Exceptions;
 using Shared.Models;
 
 namespace LearningCSharp.RSCv2.Services;
 
-public class BookService
+public class BookService : IBookService
 {
     private readonly IRepository<Book> repository;
     private readonly IMapper mapper;
@@ -64,12 +65,12 @@ public class BookService
         EmailMessageArgs message = new()
         {
             Id = newBook.Id,
-            Type = "CREATED",
+            Type = EmailTemplateEnum.BookCreated,
             Email = "email@example.it",
             Subject = "new book has been created",
         };
         OnBookCreated(message);
-        OnBookCreatedDelivery(new (){Id=newBook.Id, Title=newBook.Title, Type= newBook.Title, Stock= newBook.Stock});
+        OnBookCreatedDelivery(new() { Id = newBook.Id, Title = newBook.Title, Type = newBook.Title, Stock = newBook.Stock });
     }
 
     public async Task<List<BookDto>> GetAllAsync()
@@ -79,7 +80,7 @@ public class BookService
         return mapper.Map<List<BookDto>>(result);
     }
 
-    public async Task<BookDto> GetAByIdAsync(Guid id)
+    public async Task<BookDto> GetByIdAsync(Guid id)
     {
         var result = await repository.GetByIdAsync(id);
 
@@ -92,7 +93,7 @@ public class BookService
         OnBookUpdated(new()
         {
             Id = id,
-            Type = "UPDATED",
+            Type = EmailTemplateEnum.BookModified,
             Email = "email@example.it",
             Subject = "this book has been created",
         });

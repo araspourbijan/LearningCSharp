@@ -1,5 +1,4 @@
-﻿using LearningCSharp.RSCv2.Services;
-using LearningCSharp.RSCv2.Services.Interfaces;
+﻿using LearningCSharp.RSCv2.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Shared.Dtos;
 using Shared.Models;
@@ -7,7 +6,7 @@ using Shared.Models;
 namespace LearningCSharp.RSCv2.Controllers;
 [ApiController]
 [Route("books")]
-public class BookController(BookService _bookService, INotificationService _notificationService) : ControllerBase
+public class BookController(IBookService _bookService) : ControllerBase
 {
     [HttpPost]
     public async Task CreateBookAsync(string title, string author, double price, int stock)
@@ -22,9 +21,9 @@ public class BookController(BookService _bookService, INotificationService _noti
     }
 
     [HttpGet("{id:Guid}")]
-    public async Task GetBookByIdAsync(Guid id)
+    public async Task<BookDto> GetBookByIdAsync(Guid id)
     {
-        await _bookService.GetAByIdAsync(id);
+        return await _bookService.GetByIdAsync(id);
     }
 
     [HttpPut("{id:Guid}")]
