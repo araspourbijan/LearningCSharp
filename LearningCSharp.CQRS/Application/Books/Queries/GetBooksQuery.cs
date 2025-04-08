@@ -15,8 +15,9 @@ public class GetBooksQueryHandler(IApplicationDbContext _context, ILogger<GetBoo
         var cacheKey = $"books-{nameof(GetBooksQuery)}";
         if (!_memoryCache.TryGetValue(cacheKey, out List<BookDto>? result))
         {
-            _logger.LogInformation("Cache miss for {CacheKey}", cacheKey);
-            Thread.Sleep(2000);
+            _logger.LogDebug("Cache miss for {CacheKey}", cacheKey);
+
+            Thread.Sleep(1000);
             result = await _context.Books
                .AsNoTracking()
                .Select(b => new BookDto
@@ -30,7 +31,7 @@ public class GetBooksQueryHandler(IApplicationDbContext _context, ILogger<GetBoo
                .ToListAsync(ct);
 
             _memoryCache.Set(cacheKey, result, TimeSpan.FromMinutes(1));
-            _logger.LogInformation("Cache set for {CacheKey}", cacheKey);
+            _logger.LogDebug("Cache set for {CacheKey}", cacheKey);
         }
 
         //var distributedResult = await _distributedCache.GetAsync(cacheKey, ct);

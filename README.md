@@ -24,3 +24,4 @@ LearningCSharp.CQRS:
 - MediatR
 - FluentValidation
 - Memory cache
+- Serilog and Seq

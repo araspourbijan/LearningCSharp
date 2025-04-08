@@ -1,15 +1,25 @@
 using LearningCSharp.CQRS;
 using LearningCSharp.CQRS.Extensions;
 using Serilog;
+using Serilog.Debugging;
+using System.Diagnostics;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddServices(builder.Configuration);
 
-builder.Host.UseSerilog((context, services, configuration) =>
-    configuration.ReadFrom.Configuration(context.Configuration)
-                 .ReadFrom.Services(services));
+// Configure Serilog
+builder.Host.UseSerilog((context, loggerConfig) =>
+{
+    loggerConfig
+        .ReadFrom.Configuration(context.Configuration) // appsetting.json
+        .Enrich.WithProperty("ApplicationName", Assembly.GetExecutingAssembly().GetName().Name ?? "CQRSAPI")
+        .Enrich.FromLogContext();
+});
+
+// Enable Serilog self-logging to Visual Studio Debug output
+SelfLog.Enable(msg => Debug.WriteLine(msg));
 
 var app = builder.Build();
 
