@@ -28,11 +28,9 @@ public class GetBookByIdHandler(IApplicationDbContext _context, ILogger<GetBooks
             _logger.LogError("Book with id {Id} not found", request.Id);
             throw new NotFoundException(request.Id);
         }
-        else
-        {
-            _logger.LogInformation("Book with id {Id} found", request.Id);
-            return result;
-        }
+
+        _logger.LogInformation("BookDto to send: {@result} ", result);
+        return result;
     }
 }
 
