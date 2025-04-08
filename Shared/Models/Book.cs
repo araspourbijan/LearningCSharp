@@ -1,4 +1,8 @@
-﻿namespace Shared.Models;
+﻿using Shared.Dtos;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+
+namespace Shared.Models;
 public class Book : BaseEntity
 {
     public string Title { get; set; } = string.Empty;
@@ -8,3 +12,10 @@ public class Book : BaseEntity
     public Guid? UserId { get; set; }
     public AppUser? User { get; set; }
 }
+
+//[JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+//[JsonSerializable(typeof(List<BookDto>))]
+//[JsonSerializable(typeof(BookDto))]
+//public partial class CacheSourceGenerationContext : JsonSerializerContext
+//{
+//}

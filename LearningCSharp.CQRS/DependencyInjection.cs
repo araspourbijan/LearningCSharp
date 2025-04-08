@@ -27,6 +27,7 @@ public static class DependencyInjection
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>)); // , ?
         services.AddExceptionHandler<GlobalExceptionHandler>();
 
+        services.AddMemoryCache();
 
         return services;
     }
