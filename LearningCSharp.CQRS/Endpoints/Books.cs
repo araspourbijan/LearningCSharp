@@ -2,11 +2,13 @@
 using LearningCSharp.CQRS.Application.Books.Queries;
 using LearningCSharp.CQRS.Extensions;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Shared.Dtos;
 
 namespace LearningCSharp.CQRS.Endpoints;
 
+[AllowAnonymous]
 public class Books : EndpointGroupBase
 {
     public override string Endpoint { get; } = "book";
@@ -27,7 +29,9 @@ public class Books : EndpointGroupBase
     {
         return await sender.Send(new GetBooksQuery());
     }
-    public async Task<BookDto> GetBookById(ISender sender, [FromRoute] Guid id)
+
+    [ResponseCache(Duration = 600, VaryByQueryKeys = new[] { "id" })]
+    public async Task<BookDto> GetBookById(ISender sender, [FromQuery] Guid id)
     {
         return await sender.Send(new GetBookByIdQuery(id));
     }

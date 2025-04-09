@@ -19,7 +19,7 @@ builder.Host.UseSerilog((context, loggerConfig) =>
         .MinimumLevel.Debug()
         .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
         .MinimumLevel.Override("System", LogEventLevel.Warning)
-        .MinimumLevel.Override("Microsoft.EntityFrameworkCore.Database.Command", LogEventLevel.Debug ) // <- EF Core queries
+        .MinimumLevel.Override("Microsoft.EntityFrameworkCore.Database.Command", LogEventLevel.Debug) // <- EF Core queries
         .Enrich.WithProperty("ApplicationName", Assembly.GetExecutingAssembly().GetName().Name ?? "CQRSAPI")
         .Enrich.FromLogContext()
         .WriteTo.Console(restrictedToMinimumLevel: LogEventLevel.Debug)
@@ -39,6 +39,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseResponseCaching();
+
 app.UseExceptionHandler(options => { });
 
 app.UseHttpsRedirection();

@@ -17,6 +17,7 @@ LearningCSharp.RSCv2:
 - Interfaces
 - Dependency Injection
 - unit testing with Moq and FluentAssertions
+- output caching with InMemory cache
 
 LearningCSharp.CQRS:
 
@@ -25,3 +26,6 @@ LearningCSharp.CQRS:
 - FluentValidation
 - Memory cache
 - Serilog and Seq
+- caching with Redis
+- cache in memory
+- response caching

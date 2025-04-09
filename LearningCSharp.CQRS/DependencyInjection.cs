@@ -35,6 +35,8 @@ public static class DependencyInjection
             options.InstanceName = "libraryCache";
         });
 
+        services.AddResponseCaching();
+
         return services;
     }
 }

@@ -4,6 +4,7 @@ using Shared.Dtos;
 using Shared.Models;
 
 namespace LearningCSharp.RSCv2.Controllers;
+
 [ApiController]
 [Route("books")]
 public class BookController(IBookService _bookService) : ControllerBase
@@ -14,12 +15,14 @@ public class BookController(IBookService _bookService) : ControllerBase
         await _bookService.CreateAsync(title, author, price, stock);
     }
 
+    //[OutputCache]
     [HttpGet("list")]
     public async Task<List<BookDto>> GetBooksAsync()
     {
         return await _bookService.GetAllAsync();
     }
 
+    [ResponseCache(Duration = 20, VaryByQueryKeys = ["id"])]
     [HttpGet("{id:Guid}")]
     public async Task<BookDto> GetBookByIdAsync(Guid id)
     {

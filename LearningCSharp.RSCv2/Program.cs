@@ -15,6 +15,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+//app.UseOutputCache();
+app.UseResponseCaching();
+
 app.UseExceptionHandler(options => { });
 app.UseHttpsRedirection();
 

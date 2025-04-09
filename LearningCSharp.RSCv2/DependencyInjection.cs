@@ -32,6 +32,17 @@ public static class DependencyInjection
 
         services.AddExceptionHandler<GlobalExceptionHandler>();
 
+        services.AddMemoryCache();
+
+        services.AddResponseCaching();
+        //services.AddOutputCache(options =>
+        //{
+        //    options.AddBasePolicy(builder =>
+        //    {
+        //        builder.Expire(TimeSpan.FromSeconds(30));
+        //    });
+        //});
+
         return services;
     }
 }
