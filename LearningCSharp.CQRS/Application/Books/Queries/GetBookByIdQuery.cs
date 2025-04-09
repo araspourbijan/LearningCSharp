@@ -25,7 +25,7 @@ public class GetBookByIdHandler(IApplicationDbContext _context, ILogger<GetBooks
 
         if (result == null)
         {
-            _logger.LogError("Book with id {Id} not found", request.Id);
+            _logger.LogInformation("Book with id {Id} not found", request.Id);
             throw new NotFoundException(request.Id);
         }
 

@@ -1,11 +1,13 @@
 ﻿using FluentValidation;
 using LearningCSharp.CQRS.Application.Interfaces;
 using MediatR;
+using Microsoft.Extensions.Caching.Distributed;
+using Shared.Enums;
 using Shared.Models;
 namespace LearningCSharp.CQRS.Application.Books.Commands;
 
 public record AddBookCommand(string Title, string Author, double Price, int Stock) : IRequest;
-public class AddBookHandler(IApplicationDbContext _context) : IRequestHandler<AddBookCommand>
+public class AddBookHandler(IApplicationDbContext _context, IDistributedCache _distributedCache) : IRequestHandler<AddBookCommand>
 {
     public async Task Handle(AddBookCommand request, CancellationToken ct)
     {
@@ -19,6 +21,8 @@ public class AddBookHandler(IApplicationDbContext _context) : IRequestHandler<Ad
         };
         _context.Books.Add(book);
         await _context.SaveChangesAsync();
+
+        await _distributedCache.RemoveAsync(CacheEnums.BookList.ToString(), ct);
 
         Results.Created(string.Empty, book.Id);
     }

@@ -2,6 +2,7 @@ using LearningCSharp.CQRS;
 using LearningCSharp.CQRS.Extensions;
 using Serilog;
 using Serilog.Debugging;
+using Serilog.Events;
 using System.Diagnostics;
 using System.Reflection;
 
@@ -9,13 +10,22 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddServices(builder.Configuration);
 
+
 // Configure Serilog
+builder.Logging.ClearProviders();
 builder.Host.UseSerilog((context, loggerConfig) =>
 {
     loggerConfig
-        .ReadFrom.Configuration(context.Configuration) // appsetting.json
+        .MinimumLevel.Debug()
+        .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
+        .MinimumLevel.Override("System", LogEventLevel.Warning)
+        .MinimumLevel.Override("Microsoft.EntityFrameworkCore.Database.Command", LogEventLevel.Debug ) // <- EF Core queries
         .Enrich.WithProperty("ApplicationName", Assembly.GetExecutingAssembly().GetName().Name ?? "CQRSAPI")
-        .Enrich.FromLogContext();
+        .Enrich.FromLogContext()
+        .WriteTo.Console(restrictedToMinimumLevel: LogEventLevel.Debug)
+        .WriteTo.Debug(restrictedToMinimumLevel: LogEventLevel.Debug)
+        .WriteTo.File("logs/myApp.txt", restrictedToMinimumLevel: LogEventLevel.Warning, rollingInterval: RollingInterval.Day)
+        .WriteTo.Seq("http://localhost:5341", restrictedToMinimumLevel: LogEventLevel.Warning);
 });
 
 // Enable Serilog self-logging to Visual Studio Debug output

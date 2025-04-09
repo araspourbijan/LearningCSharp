@@ -24,10 +24,16 @@ public static class DependencyInjection
 
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
-        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>)); // , ?
+        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
         services.AddExceptionHandler<GlobalExceptionHandler>();
 
         services.AddMemoryCache();
+
+        services.AddStackExchangeRedisCache(options =>
+        {
+            options.Configuration = configuration.GetConnectionString("Redis");
+            options.InstanceName = "libraryCache";
+        });
 
         return services;
     }
